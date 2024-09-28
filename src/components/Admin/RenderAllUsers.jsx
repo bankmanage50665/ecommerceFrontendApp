@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function RenderAllUsers({ user }) {
 
-
+console.log(user)
 
     return <>
 
@@ -26,7 +26,7 @@ export default function RenderAllUsers({ user }) {
                 </div>
                 <div className="flex flex-col">
                     <h3 className="text-xl font-semibold text-gray-800 truncate">{user.name}</h3>
-                    <p className="text-indigo-600 font-medium text-sm truncate">{user.email}</p>
+                    <p className="text-indigo-600 font-medium text-sm truncate">{user.phoneNumber}</p>
                 </div>
             </motion.div>
 

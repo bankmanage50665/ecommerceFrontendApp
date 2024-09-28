@@ -232,6 +232,9 @@ export async function loginWithOtpAction({ request, params }) {
     localStorage.setItem("userid", resData.userId);
     localStorage.setItem("userPhoneNumber", resData.phoneNumber);
 
+
+    console.log(resData)
+
     if (!response.ok) {
       throw new Error(resData.message || "Failed to login user.");
     }

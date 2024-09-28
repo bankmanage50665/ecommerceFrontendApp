@@ -126,7 +126,7 @@ export default function MainNavigation() {
               {token && (
                 <Form method="post" action="/logout">
                   <motion.button
-                    className="px-3 py-2 text-black bg-white text-xs rounded-lg hover:bg-gradient-to-r from-gold-600 via-gold-500 to-gold-700 transition-colors duration-200"
+                    className="px-3 py-2 text-black bg-white text-xs rounded-lg hover:bg-white hover:text-black transition-colors duration-200"
                     {...navItemMotion}
                   >
                     <MdLogout className="h-5 w-5 mb-1" />
