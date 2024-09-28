@@ -224,7 +224,7 @@ export async function loginWithOtpAction({ request, params }) {
 
     const resData = await response.json();
 
-    console.log(resData);
+
 
     const token = resData.token;
 
