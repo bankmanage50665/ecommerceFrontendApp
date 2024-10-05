@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { NavLink, Link, Form, useRouteLoaderData } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import Logo from "../../assets/Logo.jfif";
+
+
 import { MdLogin, MdLogout } from "react-icons/md";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
@@ -16,6 +17,8 @@ export default function MainNavigation() {
 
   const creator = getCreatorId();
   const userid = userId();
+
+  console.log(userid, creator)
 
   // Framer Motion transition settings
   const navItemMotion = {

@@ -226,6 +226,9 @@ export async function loginWithOtpAction({ request, params }) {
 
 
 
+    console.log(resData)
+
+    
     const token = resData.token;
 
     localStorage.setItem("token", token);
