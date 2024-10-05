@@ -6,8 +6,10 @@ import { MdCurrencyRupee } from "react-icons/md";
 import { GrDeliver } from "react-icons/gr";
 import { motion } from "framer-motion";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import ProductReviews from "./AddProductReview";
 
 import CartContext from "../../context/CartContext";
+import GetProductReview from "./GetProductReview";
 
 export default function ProductDetail() {
   const { addToCart } = useContext(CartContext);
@@ -180,6 +182,10 @@ export default function ProductDetail() {
             </div>
           </motion.div>
         </div>
+      </div>
+
+      <div>
+        <ProductReviews productId={findProduct._id} />
       </div>
     </>
   );

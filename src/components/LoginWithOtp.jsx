@@ -40,7 +40,7 @@ const LoginWithOtp = () => {
       );
       const resData = await res.json();
 
-      console.log(resData);
+    
 
       if (!res.ok) {
         throw new Error(resData.message || "Failed to send OTP.");
@@ -205,7 +205,7 @@ export async function loginWithOtpAction({ request, params }) {
     phoneNumber: formData.get("phoneNumber"),
   };
 
-  console.log(userData);
+  
 
   // Uncomment this section when ready to implement OTP verification
 
@@ -233,7 +233,7 @@ export async function loginWithOtpAction({ request, params }) {
     localStorage.setItem("userPhoneNumber", resData.phoneNumber);
 
 
-    console.log(resData)
+    
 
     if (!response.ok) {
       throw new Error(resData.message || "Failed to login user.");

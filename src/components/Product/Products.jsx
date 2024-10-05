@@ -25,7 +25,6 @@ export default function Products() {
 
 
 
-
   function handleAddToCart(product) {
     addToCart(product);
   }
@@ -125,6 +124,9 @@ export default function Products() {
                     </Link>
                   )}
                 </div>
+              </div>
+              <div>
+                {console.log(product.creator, userid)}
               </div>
             </motion.li>
           ))}

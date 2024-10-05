@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function RenderAllUsers({ user }) {
 
-console.log(user)
+
 
     return <>
 

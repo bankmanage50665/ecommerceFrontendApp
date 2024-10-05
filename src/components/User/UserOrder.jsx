@@ -9,7 +9,7 @@ export default function UserOrders() {
   const [userOrders, setUserOrders] = useState();
   const orders = userOrders;
 
-  console.log(orders);
+ 
 
   const userid = userId();
 

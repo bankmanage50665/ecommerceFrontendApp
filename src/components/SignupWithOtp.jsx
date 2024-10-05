@@ -19,7 +19,7 @@ function SignupWithOtp() {
     const isSubmitting = navigation.state === "submitting";
     const error = useActionData()
 
-    console.log(error)
+   
 
 
 
@@ -46,21 +46,7 @@ function SignupWithOtp() {
                     )}
 
                     <Form method="post" className="space-y-6">
-                        <div>
-                            <label htmlFor="name" className={labelClasses}>
-                                <FaUser className="inline mr-2" />
-                                Name
-                            </label>
-                            <motion.input
-                                whileFocus={{ scale: 1.02 }}
-                                type="text"
-                                id="name"
-                                name="name"
-                                className={inputClasses}
-                                placeholder="Enter your name"
-                                required
-                            />
-                        </div>
+                        
 
                         <div>
                             <label htmlFor="phone" className={labelClasses}>
@@ -112,7 +98,7 @@ export default SignupWithOtp;
 export async function SignupWithOtpAction({ request, params }) {
     const formData = await request.formData();
     const userData = {
-        name: formData.get("name"),
+       
         phoneNumber: formData.get("phone"),
     };
 
