@@ -93,25 +93,25 @@ export default function Checkout() {
   };
 
   const inputClasses =
-    "block w-full bg-gray-700 text-white rounded-md p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-luxury-gold";
+    "w-full bg-gray-700 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-luxury-gold transition duration-300";
 
   return (
     <>
       <motion.div
-        className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12 px-4 sm:px-6 lg:px-8"
+        className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
         <motion.div
-          className="max-w-4xl mx-auto bg-gray-800 p-8 rounded-xl shadow-2xl"
+          className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-2xl"
           variants={itemVariants}
         >
           <motion.div
-            className="flex justify-between items-center mb-8 border-b border-gray-700 pb-4"
+            className="flex justify-between items-center mb-8 border-b border-gray-200 pb-4"
             variants={itemVariants}
           >
-            <span className="text-gray-300 font-medium text-xl">Total:</span>
+            <span className="text-gray-600 font-medium text-xl">Total:</span>
             <span className="text-luxury-gold font-bold text-4xl">
               {currencyFormatter.format(totalPrice)}
             </span>
@@ -121,9 +121,9 @@ export default function Checkout() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="name"
-                className="block text-luxury-gold font-semibold mb-2"
+                className="block text-gray-700 font-semibold mb-2"
               >
-                <FiUser className="inline-block mr-2" /> Name
+                <FiUser className="inline-block mr-2 text-luxury-gold" /> Name
               </label>
               <input
                 name="name"
@@ -138,9 +138,9 @@ export default function Checkout() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="email"
-                className="block text-luxury-gold font-semibold mb-2"
+                className="block text-gray-700 font-semibold mb-2"
               >
-                <FiMail className="inline-block mr-2" /> Email
+                <FiMail className="inline-block mr-2 text-luxury-gold" /> Email
               </label>
               <input
                 name="email"
@@ -155,9 +155,10 @@ export default function Checkout() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="phone"
-                className="block text-luxury-gold font-semibold mb-2"
+                className="block text-gray-700 font-semibold mb-2"
               >
-                <FiPhone className="inline-block mr-2" /> Phone Number
+                <FiPhone className="inline-block mr-2 text-luxury-gold" /> Phone
+                Number
               </label>
               <input
                 name="phone"
@@ -174,9 +175,10 @@ export default function Checkout() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="city"
-                className="block text-luxury-gold font-semibold mb-2"
+                className="block text-gray-700 font-semibold mb-2"
               >
-                <FiMapPin className="inline-block mr-2" /> City/Town
+                <FiMapPin className="inline-block mr-2 text-luxury-gold" />{" "}
+                City/Town
               </label>
               <input
                 name="city"
@@ -191,9 +193,10 @@ export default function Checkout() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="pin"
-                className="block text-luxury-gold font-semibold mb-2"
+                className="block text-gray-700 font-semibold mb-2"
               >
-                <FiMapPin className="inline-block mr-2" /> Pin Code
+                <FiMapPin className="inline-block mr-2 text-luxury-gold" /> Pin
+                Code
               </label>
               <input
                 name="pin"
@@ -210,9 +213,10 @@ export default function Checkout() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="address"
-                className="block text-luxury-gold font-semibold mb-2"
+                className="block text-gray-700 font-semibold mb-2"
               >
-                <FiHome className="inline-block mr-2" /> Address
+                <FiHome className="inline-block mr-2 text-luxury-gold" />{" "}
+                Address
               </label>
               <textarea
                 name="address"
@@ -228,9 +232,10 @@ export default function Checkout() {
             <motion.div variants={itemVariants}>
               <label
                 htmlFor="paymentMethod"
-                className="block text-luxury-gold font-semibold mb-2"
+                className="block text-gray-700 font-semibold mb-2"
               >
-                <FiCreditCard className="inline-block mr-2" /> Payment Method
+                <FiCreditCard className="inline-block mr-2 text-luxury-gold" />{" "}
+                Payment Method
               </label>
               <div className="relative">
                 <select
@@ -256,7 +261,7 @@ export default function Checkout() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-luxury-gold text-gray-900 font-bold py-4 rounded-lg transition duration-300 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-luxury-gold-light disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-luxury-gold text-gray-900 font-bold py-4 rounded-lg transition duration-300 ease-in-out transform hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <motion.div
