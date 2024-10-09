@@ -18,7 +18,7 @@ export default function MainNavigation() {
   const creator = getCreatorId();
   const userid = userId();
 
-  console.log(userid, creator)
+ 
 
   // Framer Motion transition settings
   const navItemMotion = {

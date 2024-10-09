@@ -117,7 +117,7 @@ export async function SignupWithOtpAction({ request, params }) {
 
     const resData = await response.json();
 
-    console.log(resData);
+  
 
     if (!response.ok) {
       throw new Error(resData.message || "Field to loging user.");

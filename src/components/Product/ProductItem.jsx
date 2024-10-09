@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import { json, useLoaderData } from "react-router-dom";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
-// import { MdCurrencyRupee } from "react-icons/md";
-// import { FaHeart, FaRegHeart } from "react-icons/fa";
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaHeart,
@@ -11,8 +9,10 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
+import { TbTruckReturn } from "react-icons/tb";
 import { MdCurrencyRupee } from "react-icons/md";
 import { GrDeliver } from "react-icons/gr";
+import { BsCash } from "react-icons/bs";
 
 import ProductReviews from "./AddProductReview";
 import CartContext from "../../context/CartContext";
@@ -156,6 +156,14 @@ export default function ProductDetail() {
                   <GrDeliver className="text-3xl text-gold-500 mr-3" />
                   <p className="text-gray-800 text-lg">Free Delivery</p>
                 </div>
+                <div className="flex items-center mb-8">
+                  <TbTruckReturn className="text-3xl text-gold-500 mr-3" />
+                  <p className="text-gray-800 text-lg">10 days return </p>
+                </div>
+                <div className="flex items-center mb-8">
+                  <BsCash className="text-3xl text-gold-500 mr-3" />
+                  <p className="text-gray-800 text-lg">Cash on delivery </p>
+                </div>
 
                 <motion.button
                   onClick={() => addToCart(findProduct)}
@@ -179,16 +187,16 @@ export default function ProductDetail() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Product Gallery
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="space-y-4 w-full max-w-md mx-auto">
               {findProduct.image.map((img, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.02 }}
-                  className="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden shadow-xl"
+                  className="w-full aspect-w-3 aspect-h-4 rounded-lg overflow-hidden shadow-xl"
                 >
                   <img
                     src={`${process.env.REACT_APP_BACKEND_URL}/${img}`}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full max-w-full max-h-[70vh]"
                     alt={`${findProduct.name} - Gallery Image ${index + 1}`}
                   />
                 </motion.div>

@@ -65,24 +65,31 @@ export default function Products() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.03 }}
               >
-                <Carousel
-                  autoplay
-                  infiniteLoop
-                  showStatus={false}
-                  showThumbs={false}
-                  showArrows={true}
-                  className="w-full"
-                >
-                  {product.image.map((img, index) => (
-                    <div key={index} className="aspect-w-16 aspect-h-9">
-                      <img
-                        src={`${process.env.REACT_APP_BACKEND_URL}/${img}`}
-                        className="object-cover w-full h-full"
-                        alt={`${product.name} - Image ${index + 1}`}
-                      />
-                    </div>
-                  ))}
-                </Carousel>
+                <div className="w-full max-w-4xl mx-auto">
+                  <Carousel
+                    autoplay
+                    infiniteLoop
+                    showStatus={false}
+                    showThumbs={false}
+                    showArrows={true}
+                    className="w-full"
+                  >
+                    {product.image.map((img, index) => (
+                      <div
+                        key={index}
+                        className="aspect-w-16 aspect-h-9 bg-gray-100"
+                      >
+                        <div className="w-full h-full max-w-[800px] max-h-[450px] mx-auto overflow-hidden">
+                          <img
+                            src={`${process.env.REACT_APP_BACKEND_URL}/${img}`}
+                            className="object-contain w-full h-full"
+                            alt={`${product.name} - Image ${index + 1}`}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </Carousel>
+                </div>
 
                 <div className="p-6 space-y-4">
                   <h2 className="text-2xl font-bold text-gray-800 truncate">
