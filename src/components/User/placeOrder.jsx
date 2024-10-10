@@ -1,8 +1,16 @@
 import { json, useLoaderData } from "react-router-dom";
 
+
+
+import { trackPageView } from "../../utils/FacebookPixel";
+
 export default function PlaceOrder() {
   const data = useLoaderData();
   const { orders } = data;
+
+  useEffect(() => {
+    trackPageView();
+  }, []);
 
   return (
     <>

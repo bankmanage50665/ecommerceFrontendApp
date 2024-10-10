@@ -1,17 +1,20 @@
 import { ShoppingBag, Loader, AlertCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { userId } from "../../middleware/getToken";
 import UserOrderItem from "./UserOrderItem";
 import UserOrderDetails from "./UserOrderDetails";
-import { useEffect, useState } from "react";
+import { trackPageView } from "../../utils/FacebookPixel";
 
 export default function UserOrders() {
   const [userOrders, setUserOrders] = useState();
   const orders = userOrders;
 
- 
-
   const userid = userId();
+
+  useEffect(() => {
+    trackPageView();
+  }, []);
 
   useEffect(() => {
     if (!userid) {
@@ -20,7 +23,9 @@ export default function UserOrders() {
 
     async function handleFetchUserOrders() {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders/${userid}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/orders/${userid}`
+        );
         const resData = await response.json();
 
         if (!response.ok) {

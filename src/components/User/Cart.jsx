@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext , useEffect} from "react";
 import { Link } from "react-router-dom";
 
 
@@ -8,9 +8,18 @@ import { motion } from 'framer-motion';
 
 
 import CartContext from "../../context/CartContext";
+import { trackPageView } from "../../utils/FacebookPixel.js";
 
 export default function Cart() {
   const { items, addToCart, removeFromCart } = useContext(CartContext);
+
+
+
+  useEffect(() => {
+    trackPageView();
+  }, []);
+
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.5, when: "beforeChildren", staggerChildren: 0.1 } },
@@ -65,7 +74,7 @@ export default function Cart() {
             className="bg-white rounded-xl shadow-2xl p-8"
             variants={itemVariants}
           >
-            <h2 className="text-3xl font-bold mb-8 text-gray-800 border-b pb-4">Your Luxurious Cart</h2>
+            <h2 className="text-3xl font-bold mb-8 text-gray-800 border-b pb-4">Your  Cart</h2>
             <ul className="space-y-6">
               {items.map((item) => (
                 <motion.li

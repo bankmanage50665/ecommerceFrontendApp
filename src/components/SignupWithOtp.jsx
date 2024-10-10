@@ -8,8 +8,9 @@ import {
   useActionData,
   useNavigation,
 } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import { PulseLoader } from "react-spinners";
+import { trackPageView } from "../utils/FacebookPixel";
 
 const inputClasses =
   "w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:bg-white transition-all duration-300";
@@ -21,6 +22,10 @@ function SignupWithOtp() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const error = useActionData();
+
+  useEffect(() => {
+    trackPageView();
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-200 to-yellow-400 p-4">
@@ -116,8 +121,6 @@ export async function SignupWithOtpAction({ request, params }) {
     }
 
     const resData = await response.json();
-
-  
 
     if (!response.ok) {
       throw new Error(resData.message || "Field to loging user.");

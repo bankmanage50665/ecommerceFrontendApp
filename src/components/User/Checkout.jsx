@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Form, useNavigate, json } from "react-router-dom";
 import {
   FiUser,
@@ -15,6 +15,7 @@ import CartContext from "../../context/CartContext";
 import { userId } from "../../middleware/getToken";
 import { currencyFormatter } from "../../middleware/formatter";
 import { getToken } from "../../middleware/getToken";
+import { trackPageView, trackEvent } from "../../utils/FacebookPixel";
 
 export default function Checkout() {
   const [isSubmitting, setIsSubmiting] = useState(false);
@@ -26,6 +27,10 @@ export default function Checkout() {
   const userid = userId();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    trackPageView();
+  }, []);
+
   const totalQuantity = items.reduce((totalNumberOfItem, item) => {
     return totalNumberOfItem + item.quantity;
   }, 0);
@@ -34,7 +39,16 @@ export default function Checkout() {
     return totalPrice + item.price * item.quantity;
   }, 0);
 
+  console.log(items.map((item) => item._id));
+
   async function handlePlaceOrder(e) {
+    trackEvent("InitiateCheckout", {
+      content_ids: items.map((item) => item._id),
+      content_type: "product",
+      value: totalPrice,
+      currency: "INR", // Adjust currency based on your needs
+    });
+
     const formData = new FormData(e.target);
     const userData = Object.fromEntries(formData.entries());
 

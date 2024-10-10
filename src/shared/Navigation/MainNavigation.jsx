@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, Link, Form, useRouteLoaderData } from "react-router-dom";
 import { motion } from "framer-motion";
-
-
 
 import { MdLogin, MdLogout } from "react-icons/md";
 import { SiGnuprivacyguard } from "react-icons/si";
@@ -10,6 +8,7 @@ import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { userId, getCreatorId } from "../../middleware/getToken";
 import CartContext from "../../context/CartContext";
+import { trackPageView } from "../../utils/FacebookPixel";
 
 export default function MainNavigation() {
   const { items } = useContext(CartContext);
@@ -18,8 +17,9 @@ export default function MainNavigation() {
   const creator = getCreatorId();
   const userid = userId();
 
- 
-
+  useEffect(() => {
+    trackPageView();
+  }, []);
   // Framer Motion transition settings
   const navItemMotion = {
     initial: { opacity: 0, y: -10 },

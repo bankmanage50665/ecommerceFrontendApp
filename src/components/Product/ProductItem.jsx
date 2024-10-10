@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { json, useLoaderData } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 
@@ -16,6 +16,7 @@ import { BsCash } from "react-icons/bs";
 
 import ProductReviews from "./AddProductReview";
 import CartContext from "../../context/CartContext";
+import { trackPageView , trackEvent} from "../../utils/FacebookPixel";
 
 export default function ProductDetail() {
   const { addToCart } = useContext(CartContext);
@@ -23,6 +24,10 @@ export default function ProductDetail() {
   const findProduct = product && product.findProduct;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isWishListed, setIsWishListed] = useState(false);
+
+  useEffect(() => {
+    trackPageView();
+  }, []);
 
   const nextImage = () => {
     setCurrentImageIndex(
@@ -36,6 +41,17 @@ export default function ProductDetail() {
         (prevIndex - 1 + findProduct.image.length) % findProduct.image.length
     );
   };
+
+  function handleAddToCart(findProduct) {
+    trackEvent("AddToCart", {
+      content_name: findProduct.name,
+      content_ids: [findProduct.id],
+      content_type: "product",
+      value: findProduct.price,
+      currency: "INR",
+    });
+    addToCart(findProduct);
+  }
 
   return (
     <>
@@ -166,8 +182,8 @@ export default function ProductDetail() {
                 </div>
 
                 <motion.button
-                  onClick={() => addToCart(findProduct)}
-                  className="w-full bg-gold-500 hover:bg-gold-600 text-white text-xl font-bold py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-opacity-50"
+                  onClick={handleAddToCart}
+                  className="w-full bg-gold-500 hover:bg-gold-600 bg-black text-white text-xl font-bold py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-opacity-50"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

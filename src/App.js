@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy , useEffect} from "react";
 import { Suspense } from "react";
 import {
   createBrowserRouter,
@@ -23,6 +23,7 @@ import { action as logoutAction } from "./middleware/logout";
 import { loginWithOtpAction } from "./components/LoginWithOtp";
 import { SignupWithOtpAction } from "./components/SignupWithOtp";
 import Loading from "./shared/component/Loading";
+import {initFacebookPixel  } from "./utils/FacebookPixel"
 
 
 
@@ -174,7 +175,14 @@ const router = createBrowserRouter([
   },
 ]);
 
+
+
 function App() {
+
+  useEffect(() => {
+    initFacebookPixel();
+  }, []);
+
   return (
     <>
       <CartContextProvider>

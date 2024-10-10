@@ -6,6 +6,7 @@ import { json, useNavigate, useRouteLoaderData } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
 import ImageUpload from "../../shared/ImageUpload";
+import { trackPageView } from "../../utils/FacebookPixel";
 
 const ProductReviews = ({ productId }) => {
   const [files, setFiles] = useState([]);
@@ -20,13 +21,16 @@ const ProductReviews = ({ productId }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    trackPageView();
+  }, []);
+
+  useEffect(() => {
     const fetchReviews = async () => {
       try {
         const res = await fetch(
           `${process.env.REACT_APP_BACKEND_URL}/review/${productId}`
         );
         const resData = await res.json();
-      
 
         setProductReview(resData.review);
       } catch (error) {

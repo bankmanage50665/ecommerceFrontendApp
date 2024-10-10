@@ -5,19 +5,24 @@ import {
   useRouteLoaderData,
 } from "react-router-dom";
 import CartContaxt from "../../context/CartContext";
-import { useContext } from "react";
+import { useContext , useEffect} from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { motion } from "framer-motion";
 import { FaShoppingCart, FaEdit, FaEye } from "react-icons/fa";
 
 import { userId } from "../../middleware/getToken";
+import { trackPageView } from "../../utils/FacebookPixel";
 
 export default function Products() {
   const { addToCart } = useContext(CartContaxt);
   const products = useLoaderData();
   const userid = userId();
   const token = useRouteLoaderData("root");
+
+  useEffect(() => {
+    trackPageView();
+  }, []);
 
   function handleAddToCart(product) {
     addToCart(product);

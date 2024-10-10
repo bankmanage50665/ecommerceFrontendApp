@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { motion } from "framer-motion";
 import { FaPhone, FaLock } from "react-icons/fa";
 import {
@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
+import { trackPageView } from "../utils/FacebookPixel";
+
 const LoginWithOtp = () => {
   const [step, setStep] = useState(1);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -20,6 +22,12 @@ const LoginWithOtp = () => {
   const [loading, setLoading] = useState(false);
   const isSubmitting = navigation.state === "submitting";
   const data = useActionData();
+
+ 
+
+  useEffect(() => {
+    trackPageView();
+  }, []);
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
@@ -39,8 +47,6 @@ const LoginWithOtp = () => {
         }
       );
       const resData = await res.json();
-
-    
 
       if (!res.ok) {
         throw new Error(resData.message || "Failed to send OTP.");
@@ -205,18 +211,19 @@ export async function loginWithOtpAction({ request, params }) {
     phoneNumber: formData.get("phoneNumber"),
   };
 
-  
-
   // Uncomment this section when ready to implement OTP verification
 
   try {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/verify`, {
-      method: "POST",
-      body: JSON.stringify(userData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users/verify`,
+      {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (response.status === 404 || response.status === 401) {
       return response;
@@ -224,19 +231,13 @@ export async function loginWithOtpAction({ request, params }) {
 
     const resData = await response.json();
 
+    console.log(resData);
 
-
-    console.log(resData)
-
-    
     const token = resData.token;
 
     localStorage.setItem("token", token);
     localStorage.setItem("userid", resData.userId);
     localStorage.setItem("userPhoneNumber", resData.phoneNumber);
-
-
-    
 
     if (!response.ok) {
       throw new Error(resData.message || "Failed to login user.");
