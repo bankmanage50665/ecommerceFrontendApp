@@ -6,7 +6,7 @@ const options = {
 };
 
 export const initFacebookPixel = () => {
-  ReactPixel.init("1675854249655728", options);
+  ReactPixel.init("3404359149708895", options);
 };
 
 export const trackPageView = () => {
@@ -16,3 +16,5 @@ export const trackPageView = () => {
 export const trackEvent = (event, data) => {
   ReactPixel.track(event, data);
 };
+
+
