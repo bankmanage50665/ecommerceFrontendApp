@@ -6,40 +6,33 @@ import {
   useRouteLoaderData,
 } from "react-router-dom";
 import { useState } from "react";
-import { motion } from 'framer-motion';
-import { FaProductHunt, FaDollarSign, FaTag, FaThList, FaUpload } from 'react-icons/fa';
-
-
-
-
+import { motion } from "framer-motion";
+import {
+  FaProductHunt,
+  FaDollarSign,
+  FaTag,
+  FaThList,
+  FaUpload,
+} from "react-icons/fa";
 
 import ImageUpload from "../../shared/ImageUpload";
-import { userId } from "../../middleware/getToken"
+import { userId } from "../../middleware/getToken";
 
-
-
-export default function Signup() {
+export default function AddProducts() {
   const [files, setFiles] = useState([]);
   const navigation = useNavigation();
   const isSubmiting = navigation.state === "submitting";
   const navigate = useNavigate();
-  const token = useRouteLoaderData("root")
-  const userid = userId()
-
-
+  const token = useRouteLoaderData("root");
+  const userid = userId();
 
   function handleGetImg(img) {
     setFiles(img);
   }
 
-
-
-
   const submitForm = async (e) => {
     e.preventDefault();
     const productData = e.target.elements;
-
-
 
     try {
       const formData = new FormData();
@@ -48,32 +41,31 @@ export default function Signup() {
       formData.append("price", productData.price.value);
       formData.append("brand", productData.brand.value);
       formData.append("category", productData.category.value);
-      formData.append("creator", userid)
+      formData.append("creator", userid);
       files.forEach((files) => formData.append("image", files));
 
-     
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/products/add`, {
-        method: "POST",
-        body: formData,
-        headers: {
-
-          Authorization: "Bearer " + token,
-        },
-
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/products/add`,
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       const resData = await res.json();
-
+      console.log(resData);
 
       if (!res.ok) {
-        throw new Error(resData.message)
+        throw new Error(resData.message);
       }
-
     } catch (err) {
-      throw json({ message: "Field to add new product, Please try again later." }, { status: 500 })
+      throw json(
+        { message: "Field to add new product, Please try again later." },
+        { status: 500 }
+      );
     }
-
-
-
 
     navigate("/products");
   };
@@ -114,7 +106,7 @@ export default function Signup() {
               <FaTag className="inline mr-2 text-indigo-500" />
               Description
             </label>
-            <input
+            <textarea
               name="description"
               type="text"
               id="description"
@@ -195,10 +187,13 @@ export default function Signup() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               disabled={isSubmiting}
-              className={`w-full py-3 rounded-lg font-semibold text-white transition-all duration-300 ${isSubmiting ? 'bg-gray-400' : 'bg-indigo-600 hover:bg-indigo-700'
-                }`}
+              className={`w-full py-3 rounded-lg font-semibold text-white transition-all duration-300 ${
+                isSubmiting
+                  ? "bg-gray-400"
+                  : "bg-indigo-600 hover:bg-indigo-700"
+              }`}
             >
-              {isSubmiting ? 'Submitting...' : 'Submit'}
+              {isSubmiting ? "Submitting..." : "Submit"}
             </motion.button>
           </div>
         </Form>

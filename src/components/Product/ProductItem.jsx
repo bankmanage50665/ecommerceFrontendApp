@@ -25,6 +25,9 @@ export default function ProductDetail() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isWishListed, setIsWishListed] = useState(false);
 
+
+  console.log(findProduct)
+
   useEffect(() => {
     trackPageView();
   }, []);
