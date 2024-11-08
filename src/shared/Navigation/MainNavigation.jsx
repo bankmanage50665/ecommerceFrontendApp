@@ -30,7 +30,7 @@ export default function MainNavigation() {
   return (
     <>
       <motion.header
-        className="w-full h-auto px-5 md:px-16 py-3 bg-gradient-to-br from-gray-900 to-indigo-900 text-white shadow-md transition-all duration-300 ease-in-out"
+        className="w-full h-auto px-5 md:px-16 py-3  text-white  transition-all duration-300 ease-in-out"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}

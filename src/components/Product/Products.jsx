@@ -5,7 +5,7 @@ import {
   useRouteLoaderData,
 } from "react-router-dom";
 import CartContaxt from "../../context/CartContext";
-import { useContext , useEffect} from "react";
+import { useContext, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { motion } from "framer-motion";
@@ -27,6 +27,8 @@ export default function Products() {
   function handleAddToCart(product) {
     addToCart(product);
   }
+
+  
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -53,7 +55,7 @@ export default function Products() {
   return (
     <>
       <motion.div
-        className="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen py-12 px-4 sm:px-6 lg:px-8"
+        className="  min-h-screen py-12 px-4 sm:px-6 lg:px-8"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -96,7 +98,7 @@ export default function Products() {
                   </Carousel>
                 </div>
 
-                <div className="p-6 space-y-4">
+                <div className="p-6 space-y-4  bg-luxury-light-background">
                   <h2 className="text-2xl font-bold text-gray-800 truncate">
                     {product.name}
                   </h2>
@@ -119,6 +121,7 @@ export default function Products() {
                       <FaShoppingCart size={20} className="mr-2" />
                       Add to Cart
                     </motion.button>
+                    <div></div>
 
                     <Link
                       to={`${product._id}`}

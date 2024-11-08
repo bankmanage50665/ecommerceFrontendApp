@@ -11,6 +11,13 @@ module.exports = {
         "luxury-gold-gredient-from": "#BF954F",
         "luxury-gold-gredient-via": "#FCF6BA",
         "luxury-gold-gredient-to": "#AA771C",
+        "header-dark-gredient-from": "#3A3633",
+        "header-dark-gredient-via": "#74706F",
+        "header-dark-gredient-to": "#383430",
+        "main-dark-gredient-from": "#4B4947",
+        "main-dark-gredient-via": "#C6C4C3",
+        "main-dark-gredient-to": "#3A3633",
+        "luxury-light-background": "#FBF2E7"
       },
     },
   },

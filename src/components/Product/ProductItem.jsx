@@ -16,7 +16,7 @@ import { BsCash } from "react-icons/bs";
 
 import ProductReviews from "./AddProductReview";
 import CartContext from "../../context/CartContext";
-import { trackPageView , trackEvent} from "../../utils/FacebookPixel";
+import { trackPageView, trackEvent } from "../../utils/FacebookPixel";
 
 export default function ProductDetail() {
   const { addToCart } = useContext(CartContext);
@@ -42,7 +42,7 @@ export default function ProductDetail() {
     );
   };
 
-  function handleAddToCart(findProduct) {
+  function handleAddToCart() {
     trackEvent("AddToCart", {
       content_name: findProduct.name,
       content_ids: [findProduct.id],

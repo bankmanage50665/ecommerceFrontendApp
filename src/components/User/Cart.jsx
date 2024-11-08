@@ -1,11 +1,9 @@
-import { useContext , useEffect} from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-
-import { FiMinus, FiPlus, FiShoppingCart } from 'react-icons/fi';
-import { currencyFormatter } from "../../middleware/formatter.js"
-import { motion } from 'framer-motion';
-
+import { FiMinus, FiPlus, FiShoppingCart } from "react-icons/fi";
+import { currencyFormatter } from "../../middleware/formatter.js";
+import { motion } from "framer-motion";
 
 import CartContext from "../../context/CartContext";
 import { trackPageView } from "../../utils/FacebookPixel.js";
@@ -13,24 +11,26 @@ import { trackPageView } from "../../utils/FacebookPixel.js";
 export default function Cart() {
   const { items, addToCart, removeFromCart } = useContext(CartContext);
 
-
-
   useEffect(() => {
     trackPageView();
   }, []);
 
-
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.5, when: "beforeChildren", staggerChildren: 0.1 } },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-
-
 
   const totalQuantity = items.reduce((totalNumberOfItem, item) => {
     return totalNumberOfItem + item.quantity;
@@ -40,14 +40,8 @@ export default function Cart() {
     return totalPrice + item.price * item.quantity;
   }, 0);
 
-
-
-
-
   return (
     <>
-
-
       <motion.div
         className="container mx-auto px-4 py-12 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen"
         initial="hidden"
@@ -60,8 +54,12 @@ export default function Cart() {
             variants={itemVariants}
           >
             <FiShoppingCart className="mx-auto text-8xl text-gray-300 mb-6" />
-            <h1 className="text-3xl font-semibold text-gray-800 mb-4">Your cart is empty</h1>
-            <p className="text-gray-600 text-lg">Add some luxurious products to start shopping</p>
+            <h1 className="text-3xl font-semibold text-gray-800 mb-4">
+              Your cart is empty
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Add some luxurious products to start shopping
+            </p>
             <Link
               to="/"
               className="mt-8 inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out hover:from-purple-700 hover:to-indigo-700 transform hover:scale-105"
@@ -74,7 +72,9 @@ export default function Cart() {
             className="bg-white rounded-xl shadow-2xl p-8"
             variants={itemVariants}
           >
-            <h2 className="text-3xl font-bold mb-8 text-gray-800 border-b pb-4">Your  Cart</h2>
+            <h2 className="text-3xl font-bold mb-8 text-gray-800 border-b pb-4">
+              Your Cart
+            </h2>
             <ul className="space-y-6">
               {items.map((item) => (
                 <motion.li
@@ -89,7 +89,9 @@ export default function Cart() {
                       className="w-24 h-24 object-cover rounded-md mr-6 shadow-lg"
                     />
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-800">{item.name}</h3>
+                      <h3 className="text-xl font-semibold text-gray-800">
+                        {item.name}
+                      </h3>
                       <p className="text-gray-600">{item.brand}</p>
                     </div>
                   </div>
@@ -103,7 +105,9 @@ export default function Cart() {
                       >
                         <FiMinus />
                       </motion.button>
-                      <span className="text-gray-800 font-medium mx-4">{item.quantity}</span>
+                      <span className="text-gray-800 font-medium mx-4">
+                        {item.quantity}
+                      </span>
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -125,12 +129,18 @@ export default function Cart() {
               variants={itemVariants}
             >
               <div className="flex justify-between items-center mb-4">
-                <span className="text-gray-600 font-medium">Estimated Delivery</span>
+                <span className="text-gray-600 font-medium">
+                  Estimated Delivery
+                </span>
                 <span className="text-gray-800 text-xl">Within 72 hours</span>
               </div>
               <div className="flex justify-between items-center mb-4">
-                <span className="text-gray-600 font-medium">Total Quantity</span>
-                <span className="text-gray-800 font-bold text-xl">{totalQuantity}</span>
+                <span className="text-gray-600 font-medium">
+                  Total Quantity
+                </span>
+                <span className="text-gray-800 font-bold text-xl">
+                  {totalQuantity}
+                </span>
               </div>
               <div className="flex justify-between items-center mb-8">
                 <span className="text-gray-600 font-medium">Total</span>
@@ -153,8 +163,6 @@ export default function Cart() {
           </motion.div>
         )}
       </motion.div>
-
-
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaPhone, FaLock } from "react-icons/fa";
 import {
@@ -22,8 +22,7 @@ const LoginWithOtp = () => {
   const [loading, setLoading] = useState(false);
   const isSubmitting = navigation.state === "submitting";
   const data = useActionData();
-
- 
+  const [err, setError] = useState(null);
 
   useEffect(() => {
     trackPageView();
@@ -55,6 +54,7 @@ const LoginWithOtp = () => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
+      setError(err.message || "Something went wrong, Please try again later.");
       throw json(
         { message: "Failed to send OTP. Please try again later." },
         { status: 500 }
@@ -225,13 +225,11 @@ export async function loginWithOtpAction({ request, params }) {
       }
     );
 
-    if (response.status === 404 || response.status === 401) {
+    if (response.status === 404 || response.status === 500) {
       return response;
     }
 
     const resData = await response.json();
-
-    console.log(resData);
 
     const token = resData.token;
 

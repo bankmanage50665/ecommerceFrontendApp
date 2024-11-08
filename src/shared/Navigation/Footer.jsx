@@ -16,7 +16,7 @@ export default function Footer() {
   return (
     <>
       <div className="h-16" /> {/* Spacer to prevent content overlap */}
-      <footer className="w-full h-16 bg-gradient-to-br from-gray-900 to-indigo-900 fixed bottom-0 left-0 right-0 shadow-lg z-50">
+      <footer className="w-full h-16   fixed bottom-0 left-0 right-0 shadow-lg z-50">
         <div className="max-w-screen-xl mx-auto h-full flex justify-evenly items-center">
           <NavLink
             to="products"

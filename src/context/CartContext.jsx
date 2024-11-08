@@ -1,9 +1,19 @@
-import { createContext, useReducer } from "react";
+import {
+  createContext,
+  useReducer,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const CartContext = createContext({
   items: [],
-  addToCart: (items) => { },
-  removeFromCart: (id) => { }
+  addToCart: (items) => {},
+  removeFromCart: (id) => {},
+  newAddToCart: (sessionId, productId, quantity) => {},
+  newRemoveFromCart: (productId, quantity) => {},
+  cart: [],
 });
 
 function cartReducer(state, action) {
@@ -67,7 +77,12 @@ export function CartContextProvider({ children }) {
     dispatchAction({ type: "REMOVE_FROM_CART", id });
   }
 
-  const ctxValue = { items: cart.items, addToCart, removeFromCart };
+  const ctxValue = {
+    items: cart.items,
+    addToCart,
+    removeFromCart,
+  };
+
   return (
     <CartContext.Provider value={ctxValue}>{children}</CartContext.Provider>
   );
