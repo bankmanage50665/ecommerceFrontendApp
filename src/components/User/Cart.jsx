@@ -14,6 +14,7 @@ export default function Cart() {
   const { items, addToCart, removeFromCart } = useContext(CartContext);
 
 
+ console.log(items)
 
   useEffect(() => {
     trackPageView();

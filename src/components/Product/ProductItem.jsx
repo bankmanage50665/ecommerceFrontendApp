@@ -25,6 +25,9 @@ export default function ProductDetail() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isWishListed, setIsWishListed] = useState(false);
 
+
+  console.log(findProduct)
+
   useEffect(() => {
     trackPageView();
   }, []);
@@ -42,7 +45,7 @@ export default function ProductDetail() {
     );
   };
 
-  function handleAddToCart(findProduct) {
+  function handleAddToCart() {
     trackEvent("AddToCart", {
       content_name: findProduct.name,
       content_ids: [findProduct.id],
