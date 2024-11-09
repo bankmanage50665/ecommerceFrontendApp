@@ -1,22 +1,9 @@
-import {
-  createContext,
-  useReducer,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
-import { v4 as uuidv4 } from "uuid";
+import { createContext, useReducer } from "react";
 
 const CartContext = createContext({
   items: [],
   addToCart: (items) => {},
   removeFromCart: (id) => {},
-<<<<<<< HEAD
-  newAddToCart: (sessionId, productId, quantity) => {},
-  newRemoveFromCart: (productId, quantity) => {},
-  cart: [],
-=======
->>>>>>> 82d373536602821909450d356afe2cd884a575b6
 });
 
 function cartReducer(state, action) {
@@ -79,15 +66,7 @@ export function CartContextProvider({ children }) {
     dispatchAction({ type: "REMOVE_FROM_CART", id });
   }
 
-<<<<<<< HEAD
-  const ctxValue = {
-    items: cart.items,
-    addToCart,
-    removeFromCart,
-  };
-=======
   const ctxValue = { items: cart.items, addToCart, removeFromCart };
->>>>>>> 82d373536602821909450d356afe2cd884a575b6
 
   return (
     <CartContext.Provider value={ctxValue}>{children}</CartContext.Provider>

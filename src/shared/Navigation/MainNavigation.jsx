@@ -22,106 +22,109 @@ export default function MainNavigation() {
   }, []);
   // Framer Motion transition settings
   const navItemMotion = {
-    initial: { opacity: 0, y: -10 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: "easeInOut" },
+    initial: { y: -20, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    transition: { duration: 0.3, ease: "easeOut" },
   };
 
   return (
     <>
       <motion.header
-        className="w-full h-auto px-5 md:px-16 py-3  text-white  transition-all duration-300 ease-in-out"
+        className="w-full bg-gradient-to-r from-gray-900 to-gray-800 shadow-lg"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="max-w-7xl mx-auto">
-          <ul className="flex flex-wrap justify-between items-center">
-            <motion.li {...navItemMotion}>
-              <Link to="/" className="block">
-                <h1 className="h-10 w-10 font-bold">Trendify </h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <motion.div {...navItemMotion}>
+              <Link to="/" className="flex items-center">
+                <h1 className="text-2xl font-bold text-white hover:text-gray-100 transition-colors">
+                  Trendify
+                </h1>
               </Link>
-            </motion.li>
+            </motion.div>
 
             <motion.nav
-              className="flex flex-wrap items-center space-x-1 sm:space-x-2 md:space-x-4"
+              className="flex items-center gap-3"
               initial="hidden"
               animate="visible"
             >
               <NavLink
                 to="products/cart"
                 className={({ isActive }) =>
-                  `relative flex flex-col items-center px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-white hover:text-black hover:font-bold ${
-                    isActive
-                      ? "bg-white text-black"
-                      : "text-white hover:bg-white hover:text-black hover:font-bold"
-                  }`
+                  `relative flex flex-col items-center px-4 py-2 rounded-lg transition-all duration-300 
+                ${
+                  isActive
+                    ? "bg-white text-indigo-600 shadow-md transform scale-105"
+                    : "text-white hover:bg-white/10"
+                }`
                 }
-                end
               >
                 <motion.div className="relative" {...navItemMotion}>
-                  <MdOutlineShoppingCart className="h-5 w-5 mb-1" />
+                  <MdOutlineShoppingCart className="h-6 w-6" />
                   {items.length > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                       {items.length}
                     </span>
                   )}
+                  <span className="text-xs mt-1">Cart</span>
                 </motion.div>
-                <motion.span className="text-xs" {...navItemMotion}>
-                  Cart
-                </motion.span>
               </NavLink>
 
               {!token && (
-                <NavLink
-                  to="signup"
-                  className={({ isActive }) =>
-                    `flex flex-col items-center px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-white hover:text-black hover:font-bold ${
+                <>
+                  <NavLink
+                    to="signup"
+                    className={({ isActive }) =>
+                      `flex flex-col items-center px-4 py-2 rounded-lg transition-all duration-300
+                    ${
                       isActive
-                        ? "text-black bg-white"
-                        : "text-white hover:bg-white hover:text-black"
+                        ? "bg-white text-indigo-600 shadow-md transform scale-105"
+                        : "text-white hover:bg-white/10"
                     }`
-                  }
-                >
-                  <motion.div {...navItemMotion}>
-                    <SiGnuprivacyguard className="h-5 w-5 mb-1" />
-                    <span className="text-xs">Signup</span>
-                  </motion.div>
-                </NavLink>
-              )}
+                    }
+                  >
+                    <motion.div {...navItemMotion}>
+                      <SiGnuprivacyguard className="h-6 w-6" />
+                      <span className="text-xs mt-1">Signup</span>
+                    </motion.div>
+                  </NavLink>
 
-              {!token && (
-                <NavLink
-                  to="login"
-                  className={({ isActive }) =>
-                    `flex flex-col items-center px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-white hover:text-black hover:font-bold ${
+                  <NavLink
+                    to="login"
+                    className={({ isActive }) =>
+                      `flex flex-col items-center px-4 py-2 rounded-lg transition-all duration-300
+                    ${
                       isActive
-                        ? "text-black bg-white"
-                        : "text-white hover:bg-white hover:text-black"
+                        ? "bg-white text-indigo-600 shadow-md transform scale-105"
+                        : "text-white hover:bg-white/10"
                     }`
-                  }
-                >
-                  <motion.div {...navItemMotion}>
-                    <MdLogin className="h-5 w-5 mb-1" />
-                    <span className="text-xs">Login</span>
-                  </motion.div>
-                </NavLink>
+                    }
+                  >
+                    <motion.div {...navItemMotion}>
+                      <MdLogin className="h-6 w-6" />
+                      <span className="text-xs mt-1">Login</span>
+                    </motion.div>
+                  </NavLink>
+                </>
               )}
 
               {token && userid === creator && (
                 <NavLink
                   to="admin"
                   className={({ isActive }) =>
-                    `flex flex-col items-center px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-white hover:text-black hover:font-bold ${
-                      isActive
-                        ? "text-black bg-white"
-                        : "text-white hover:bg-white hover:text-white"
-                    }`
+                    `flex flex-col items-center px-4 py-2 rounded-lg transition-all duration-300
+                  ${
+                    isActive
+                      ? "bg-white text-indigo-600 shadow-md transform scale-105"
+                      : "text-white hover:bg-white/10"
+                  }`
                   }
                 >
                   <motion.div {...navItemMotion}>
-                    <MdOutlineAdminPanelSettings className="h-5 w-5 mb-1" />
-                    <span className="text-xs">Admin</span>
+                    <MdOutlineAdminPanelSettings className="h-6 w-6" />
+                    <span className="text-xs mt-1">Admin</span>
                   </motion.div>
                 </NavLink>
               )}
@@ -129,16 +132,16 @@ export default function MainNavigation() {
               {token && (
                 <Form method="post" action="/logout">
                   <motion.button
-                    className="px-3 py-2 text-black bg-white text-xs rounded-lg hover:bg-white hover:text-black transition-colors duration-200"
+                    className="flex flex-col items-center px-4 py-2 rounded-lg bg-white text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
                     {...navItemMotion}
                   >
-                    <MdLogout className="h-5 w-5 mb-1" />
-                    Logout
+                    <MdLogout className="h-6 w-6" />
+                    <span className="text-xs mt-1">Logout</span>
                   </motion.button>
                 </Form>
               )}
             </motion.nav>
-          </ul>
+          </div>
         </div>
       </motion.header>
     </>

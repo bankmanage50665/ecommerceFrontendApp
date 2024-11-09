@@ -11,12 +11,6 @@ import { trackPageView } from "../../utils/FacebookPixel.js";
 export default function Cart() {
   const { items, addToCart, removeFromCart } = useContext(CartContext);
 
-<<<<<<< HEAD
-=======
-
- console.log(items)
-
->>>>>>> 82d373536602821909450d356afe2cd884a575b6
   useEffect(() => {
     trackPageView();
   }, []);
